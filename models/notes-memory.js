@@ -22,3 +22,7 @@ exports.destroy = async function(key) {
     throw new Error(`Note ${key} does not exist`);
   }
 }
+
+exports.keylist = async function() { return Object.key(notes); }
+exports.count = async function() { return notes.length; }
+exports.close = async function() { }
