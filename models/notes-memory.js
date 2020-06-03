@@ -8,7 +8,7 @@ exports.update = exports.create = async function(key, title, body) {
 };
 
 exports.read = async function(key) {
-  if (note[key]) {
+  if (notes[key]) {
     return notes[key];
   } else {
     throw new Error(`Note ${key} does not exist`);
