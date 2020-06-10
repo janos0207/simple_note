@@ -18,7 +18,8 @@ router.get('/add', (req, res, next) => {
 router.post('/save', async (req, res, next) => {
   let note;
   const notekey = !!req.body.notekey ? req.body.notekey : generate_key();
-  if (req.body.docreate === "create") {
+  console.log('INFO: docreate:', req.body.docreate);
+  if (req.body.docreate === 'create') {
     note = await notes.create(notekey, req.body.title, req.body.body);
   } else {
     note = await notes.update(notekey, req.body.title, req.body.body);
@@ -46,6 +47,22 @@ router.get('/edit', async (req, res, next) => {
     note: note,
   })
 })
+
+// Ask to Destroy the Note
+router.get('/destroy', async (req, res, next) => {
+  let note = await notes.read(req.query.key);
+  res.render('notedestroy', {
+    title: note ? note.title : "",
+    notekey: req.query.key,
+    note: note,
+  });
+});
+
+// Do Destroy the Note
+router.post('/destroy/confirm', async (req, res, next) => {
+  await notes.destroy(req.body.notekey);
+  res.redirect('/');
+});
 
 // TODO: validation for duplicates
 function generate_key() {
