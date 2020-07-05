@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node --experimental-modules ./bin/www.mjs"
+    "start": "node --experimental-modules ./bin/www.mjs",
+    "start-level": "DEBUG=simple-note:* NOTES_MODEL=level node --experimental-modules ./bin/www.mjs"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -12,6 +13,7 @@
     "fs-extra": "^9.0.1",
     "hbs": "^4.1.1",
     "http-errors": "~1.6.3",
+    "level": "^6.0.1",
     "morgan": "~1.9.1",
     "rotating-file-stream": "^2.1.1"
   },
