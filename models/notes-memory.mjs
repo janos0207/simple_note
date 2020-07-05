@@ -1,6 +1,6 @@
 import Note from './Note.mjs';
 
-export const notes = [];
+export const notes = {};
 
 async function crupdate(key, title, body) {
   notes[key] = new Note(key, title, body);
@@ -34,6 +34,6 @@ export async function keylist() {
   return Object.keys(notes);
 }
 export async function count() {
-  return notes.length;
+  return Object.keys(notes).length;
 }
 export async function close() { }

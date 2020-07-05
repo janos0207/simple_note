@@ -4,8 +4,8 @@
         "es2020": true
     },
     "extends": [
-        // "eslint:recommended"
-        "google"
+        "eslint:recommended"
+        // "google"
     ],
     "parserOptions": {
         "ecmaVersion": 11,
@@ -14,6 +14,8 @@
     "rules": {
         "semi": ["error", "always"],
         "no-var": ["error"],
-        "camelcase": ["error", {"ignoreDestructuring": true}]
+        "camelcase": ["error", {"ignoreDestructuring": true}],
+        "quotes": ["error", "single"],
+        "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
     }
 }
