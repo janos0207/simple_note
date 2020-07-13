@@ -1,8 +1,7 @@
 // import util from 'util';
 import express from 'express';
 export const router = express.Router();
-// import * as notes from '../models/notes-memory.mjs';
-import * as notes from '../models/notes-level.mjs';
+import * as notes from '../models/notes.mjs';
 
 router.get('/add', (req, res) => {
   res.render('noteedit', {

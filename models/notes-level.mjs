@@ -12,14 +12,12 @@ import level from 'level';
 let db;
 
 async function connectDB() {
-  console.log('connecting levelDB...');
   if (typeof db !== 'undefined' || db) return db;
   db = await level(
       process.env.LEVELDB_LOCATION || 'notes.level', {
         createIfMissing: true,
         valueEncoding: 'json',
       });
-  console.log('db created.');
   return db;
 }
 
