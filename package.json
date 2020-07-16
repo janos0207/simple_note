@@ -3,8 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node --experimental-modules ./bin/www.mjs",
-    "start-level": "DEBUG=simple-note:* NOTES_MODEL=level node --experimental-modules ./bin/www.mjs"
+    "start": " NOTES_MODEL=memory node --experimental-modules ./bin/www.mjs",
+    "start-level": "NOTES_MODEL=level node --experimental-modules ./bin/www.mjs",
+    "sqlite3-setup": "sqlite3 notes.sqlite3 --init models/schema-sqlite3.sql",
+    "start-sqlite3": "SQLITE_FILE=notes.sqlite3 NOTES_MODEL=sqlite3 node --experimental-modules ./bin/www.mjs"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -15,7 +17,8 @@
     "http-errors": "~1.6.3",
     "level": "^6.0.1",
     "morgan": "~1.9.1",
-    "rotating-file-stream": "^2.1.1"
+    "rotating-file-stream": "^2.1.1",
+    "sqlite3": "^5.0.0"
   },
   "devDependencies": {
     "eslint": "^7.3.1",
