@@ -1,6 +1,3 @@
-import path from 'path';
-import fs from 'fs-extra';
-import util from 'util';
 import process from 'process';
 import Note from './Note.mjs';
 import level from 'level';

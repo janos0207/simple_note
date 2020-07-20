@@ -6,7 +6,8 @@
     "start": " NOTES_MODEL=memory node --experimental-modules ./bin/www.mjs",
     "start-level": "NOTES_MODEL=level node --experimental-modules ./bin/www.mjs",
     "sqlite3-setup": "sqlite3 notes.sqlite3 --init models/schema-sqlite3.sql",
-    "start-sqlite3": "SQLITE_FILE=notes.sqlite3 NOTES_MODEL=sqlite3 node --experimental-modules ./bin/www.mjs"
+    "start-sqlite3": "SQLITE_FILE=notes.sqlite3 NOTES_MODEL=sqlite3 node --experimental-modules ./bin/www.mjs",
+    "start-sequelize": "SEQUELIZE_CONNECT=./models/sequelize-sqlite.yaml NOTES_MODEL=sequelize node --experimental-modules ./bin/www.mjs"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -15,9 +16,11 @@
     "fs-extra": "^9.0.1",
     "hbs": "^4.1.1",
     "http-errors": "~1.6.3",
+    "js-yaml": "^3.14.0",
     "level": "^6.0.1",
     "morgan": "~1.9.1",
     "rotating-file-stream": "^2.1.1",
+    "sequelize": "^6.3.3",
     "sqlite3": "^5.0.0"
   },
   "devDependencies": {

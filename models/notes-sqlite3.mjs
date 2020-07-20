@@ -2,9 +2,9 @@
 import Note from './Note.mjs';
 import sqlite3 from 'sqlite3';
 import process from 'process';
-// import DBG from 'debug';
+import DBG from 'debug';
 // const debug = DBG('notes:notes-sqlite3');
-// const error = DBG('notes:error-sqlite3');
+const error = DBG('notes:error-sqlite3');
 
 let db;
 
@@ -31,7 +31,7 @@ export async function create(key, title, body) {
         if (err) return reject(err);
         resolve(note);
       });
-  }).catch(err => console.error(err));
+  }).catch(err => error(err));
   return note;
 }
 
@@ -45,7 +45,7 @@ export async function update(key, title, body) {
         if (err) return reject(err);
         resolve(note);
       });
-  }).catch(err => console.error(err));
+  }).catch(err => error(err));
   return note;
 }
 
@@ -57,7 +57,7 @@ export async function read(key) {
       const note = new Note(row.notekey, row.title, row.body);
       resolve(note);
     });
-  }).catch(err => console.error(err));
+  }).catch(err => error(err));
   return note;
 }
 
@@ -78,7 +78,7 @@ export async function keylist() {
       if (err) return reject(err);
       resolve(rows.map(row => row.notekey));
     });
-  });
+  }).catch(err => error(err));
   return keys;
 }
 
