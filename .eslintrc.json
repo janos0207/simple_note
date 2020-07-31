@@ -16,7 +16,7 @@
         "no-var": ["error"],
         "camelcase": ["error", {"ignoreDestructuring": true}],
         "quotes": ["error", "single"],
-        "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+        "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
         "eol-last": ["error"]
     }
 }

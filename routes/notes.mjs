@@ -2,6 +2,8 @@
 import express from 'express';
 export const router = express.Router();
 import * as notes from '../models/notes.mjs';
+import DBG from 'debug';
+const info = DBG('notes:info-notes');
 
 router.get('/add', (req, res) => {
   res.render('noteedit', {
@@ -16,7 +18,7 @@ router.get('/add', (req, res) => {
 router.post('/save', async (req, res) => {
   let note;
   const notekey = req.body.notekey || generateKey();
-  console.log('INFO: docreate:', req.body.docreate);
+  info('INFO: docreate:', req.body.docreate);
   if (req.body.docreate === 'create') {
     note = await notes.create(notekey, req.body.title, req.body.body);
   } else {
