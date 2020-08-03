@@ -3,13 +3,11 @@ import process from 'process';
 let NotesModule;
 const dbModelPath = `../models/notes-${process.env.NOTES_MODEL}.mjs`;
 
-async function model() {
+export async function model() {
   if (NotesModule) return NotesModule;
 
-  console.log('Loading db model: ', dbModelPath);
   NotesModule = await import(dbModelPath)
     .then((module) => {
-      console.log(`connect ${process.env.NOTES_MODEL} db`);
       return module;
     })
     .catch(err => console.error(err));
