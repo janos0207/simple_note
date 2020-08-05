@@ -106,3 +106,4 @@ dist
 # Database Artifacts
 mongo/
 *.sqlite3
+notes.level/

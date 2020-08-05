@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test-notes-memory": "NOTES_MODEL=memory mocha test-model",
+    "test-notes-level": "NOTES_MODEL=level mocha test-model",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

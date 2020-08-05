@@ -47,4 +47,58 @@ describe('Model Test', function() {
       }
     });
   });
+
+  describe('read note', function() {
+    it('should have proper note', async function() {
+      const note = await model.read('n1');
+      assert.exists(note);
+      assert.deepEqual(
+        {key: note.key, title: note.title, body: note.body},
+        {key: 'n1', title: 'Note1', body: 'body1'}
+      );
+    });
+    it('unknown note should fail', async function() {
+      try {
+        const note = await model.read('nonexistent_key');
+        // assert.notExists(note);  // this would be invoked?
+        throw new Error('should not get here');
+      } catch(err) {
+        assert.notEqual(err.message, 'should not get here');
+      }
+    });
+  });
+
+  describe('update note', function() {
+    it('after a successful update method', async function() {
+      const newNote = await model.update('n1', 'NewNote1', 'newBody1');
+      const note = await model.read('n1');
+      assert.exists(note);
+      assert.deepEqual(
+        {key: note.key, title: note.title, body: note.body},
+        {key: 'n1', title: 'NewNote1', body: 'newBody1'}
+      );
+    });
+  });
+
+  describe('destroy note', function() {
+    it('should remove note', async function() {
+      await model.destroy('n1');
+      const keys = await model.keylist();
+      assert.exists(keys);
+      assert.lengthOf(keys, 2);
+      for(let key of keys) {
+        assert.match(key, /n[23]/, 'correct key');
+      }
+    });
+    it('should fail to remove nonexistent note', async function() {
+      try {
+        await model.destroy('nonexistent_key');
+        throw new Error('should not get here');
+      } catch(err) {
+        assert.notEqual(err.message, 'should not get here');
+      }
+    });
+  });
+
+  after(function() { model.close(); });
 });
