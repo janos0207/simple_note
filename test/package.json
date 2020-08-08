@@ -6,7 +6,8 @@
   "scripts": {
     "test-notes-memory": "NOTES_MODEL=memory mocha test-model",
     "test-notes-level": "NOTES_MODEL=level mocha test-model",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test-notes-sqlite3": "rm -f test.sqlite3 && sqlite3 test.sqlite3 --init ../models/schema-sqlite3.sql </dev/null && NOTES_MODEL=sqlite3 SQLITE_FILE=test.sqlite3 mocha test-model",
+    "test-notes-sequelize-sqlite": "rm -f test-sequelize.sqlite3 && sqlite3 test-sequelize.sqlite3 --init ../models/schema-sqlite3.sql </dev/null && NOTES_MODEL=sequelize SEQUELIZE_CONNECT=sequelize-sqlite.yaml mocha test-model"
   },
   "author": "",
   "license": "ISC",

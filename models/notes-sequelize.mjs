@@ -60,7 +60,7 @@ export async function read(key) {
 
 export async function destroy(key) {
   const SQNote = await connectDB();
-  const note = await SQNote.find({ where: { notekey: key } });
+  const note = await SQNote.findOne({ where: { notekey: key } });
   return note.destroy();
 }
 

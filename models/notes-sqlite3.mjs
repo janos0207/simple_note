@@ -2,6 +2,7 @@
 import Note from './Note.mjs';
 import sqlite3 from 'sqlite3';
 import process from 'process';
+import util from 'util';
 import DBG from 'debug';
 // const debug = DBG('notes:notes-sqlite3');
 const error = DBG('notes:error-sqlite3');
@@ -54,15 +55,17 @@ export async function read(key) {
   const note = await new Promise((resolve, reject) => {
     db.get('SELECT * FROM notes WHERE notekey = ?', [key], (err, row) => {
       if (err) return reject(err);
+      if (!row) return reject(new Error(`No note found for ${key}`));
       const note = new Note(row.notekey, row.title, row.body);
       resolve(note);
     });
-  }).catch(err => error(err));
+  }).catch(err => { error(err); throw err; });
   return note;
 }
 
 export async function destroy(key) {
   const db = await connectDB();
+  const note = await read(key);  // throw an error when non-existent key
   return await new Promise((resolve, reject) => {
     db.run('DELETE FROM notes WHERE notekey = ?', [key], err => {
       if (err) return reject(err);
