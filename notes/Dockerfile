@@ -9,6 +9,7 @@ RUN mkdir -p /notes/bin /notes/models /notes/partials /notes/public /notes/route
 COPY bin/ /notes/bin/
 COPY models/ /notes/models/
 COPY models/*.mjs models/sequelize-sqlite.yaml /notes/models/
+RUN true
 COPY partials/ /notes/partials/
 COPY public/ /notes/public/
 COPY routes/ /notes/routes/
