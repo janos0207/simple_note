@@ -17,6 +17,7 @@
         "camelcase": ["error", {"ignoreDestructuring": true}],
         "quotes": ["error", "single"],
         "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
-        "eol-last": ["error"]
+        "eol-last": ["error"],
+        "max-len": ["warn", { "code": 80 }]
     }
 }
