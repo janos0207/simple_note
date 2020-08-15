@@ -93,6 +93,12 @@ export async function listUsers() {
   return userlist.map(user => sanitizedUser(user));
 }
 
+export async function close() {
+  if (sequlz) { sequlz.close(); }
+  sequlz = undefined;
+  SQUser = undefined;
+}
+
 export function sanitizedUser(user) {
   const ret = {
     id: user.usename, usename: user.usename, provider: user.provider,
