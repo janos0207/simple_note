@@ -107,15 +107,9 @@ export function sanitizedUser(user) {
   };
   try {
     ret.emails = JSON.parse(user.emails);
-  } catch(e) {
-    ret.emails = [];
-    error(e);
-  }
+  } catch(e) { ret.emails = []; error(e); }
   try {
     ret.photos = JSON.parse(user.photos);
-  } catch(e) {
-    ret.photos = [];
-    error(e);
-  }
+  } catch(e) { ret.photos = []; error(e); }
   return ret;
 }
