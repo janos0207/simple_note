@@ -32,15 +32,17 @@ async function connectDB() {
     emails: Sequelize.STRING(2048),
     photos: Sequelize.STRING(2048),
   });
+  info('SQUser created');
+  return SQUser.sync();
 }
 
 export async function create(username, password, provider, familyName,
                              givenName, middleName, emails, photos) {
-  const SQUser = connectDB();
+  const SQUser = await connectDB();
   return SQUser.create({
     username, password, provider, familyName, givenName, middleName,
     emails: JSON.stringify(emails), photos: JSON.stringify(photos)
-  });
+  }).catch(err => { error(err); return err; });
 }
 
 export async function update(username, password, provider, familyName,
